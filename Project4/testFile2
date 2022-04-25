@@ -1,0 +1,10 @@
+Name prog2 
+Spot id1 
+Place 
+Name id2 
+/ id1  
+Show id1 
+Spot 5 Show 5  
+Move id2 Show id2
+Home 
+Show prog2 

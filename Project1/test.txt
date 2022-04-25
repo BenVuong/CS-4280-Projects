@@ -1,0 +1,9 @@
+test Make If Again &
+a result << 3245 / 2354
+finalResult <- 5 + 3
+var <- 16 - 3
+var <- 134 & result14
+newCow num_125 
+{ aNewVairable & num5 . Home }
+Again If Assign Move Show Flip Name Home Do Spot Place Here There
+var2 *This is a comment*

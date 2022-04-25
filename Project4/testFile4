@@ -1,0 +1,9 @@
+Name prog4
+Spot prog5
+Place
+Name zd2
+.
+{ Do Again Show prog5 <- 10 + 5 }
+.
+Home
+Show prog4

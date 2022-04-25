@@ -1,0 +1,20 @@
+LOAD 0
+STORE prog2
+READ id1
+LOAD 0
+STORE id2
+LOAD id1
+SUB 1
+STORE id1
+WRITE id1
+LOAD 5
+WRITE 5
+LOAD id2
+WRITE id2
+WRITE prog2
+STOP
+prog2 0
+id1 0
+id2 0
+T1 0
+T2 0
