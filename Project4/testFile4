@@ -5,5 +5,6 @@ Name zd2
 .
 { Do Again Show prog5 <- 10 + 5 }
 .
+Assign zd2 / prog5
 Home
-Show prog4
+Show zd2

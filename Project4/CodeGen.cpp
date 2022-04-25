@@ -39,6 +39,11 @@ void CodeGen::generateCode(Node *nodePtr, int level)
       generateCode(nodePtr->middleChild, (currentLevel + 1));//Jumps to nonterminal B
       break;
     case 'E':
+      if(level == 1)
+      {
+        cout << "LOAD " << nodePtr->token2 << endl;
+        code.push_back("LOAD " + nodePtr->token2 + "\n");
+      }
       cout << "WRITE " << nodePtr->token2 << endl;
       code.push_back("WRITE " + nodePtr->token2 + "\n");
       break;
@@ -68,8 +73,6 @@ void CodeGen::generateCode(Node *nodePtr, int level)
         generateCode(nodePtr->middleChild,(currentLevel+1));//Jumps to nonterminal W
         cout << "STORE T1" << endl;
         code.push_back("STORE T1\n");
-        cout << "LOAD " << nodePtr->token3 << endl;
-        code.push_back("LOAD " + nodePtr->token3 + "\n");
         cout << "SUB T1" << endl;
         code.push_back("SUB T1\n");
         generateCode(nodePtr->leftChild, (1));//Jumps to nonterminal T
@@ -186,9 +189,9 @@ void CodeGen::generateCode(Node *nodePtr, int level)
       generateCode(nodePtr->leftChild,(0));//Jumps to nonterminal Z
       break;
     case 'J':
-      cout << "LOAD " << nodePtr->token2 << endl;
       generateCode(nodePtr->leftChild, (currentLevel + 1));//Jumps to nonterminal D
       cout << "STORE " << nodePtr->token2 << endl;
+      code.push_back("STORE " + nodePtr->token2 + "\n");
       break;
     case 'K':
       if(nodePtr->token1 == "Spot")

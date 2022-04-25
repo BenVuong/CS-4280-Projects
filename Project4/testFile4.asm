@@ -16,8 +16,15 @@ STORE T2
 LOAD T1
 SUB T2
 BRZPOS Repeat4
-WRITE prog4
+LOAD prog5
+SUB 1
+STORE prog5
+STORE zd2
+LOAD zd2
+WRITE zd2
 STOP
 prog4 0
 prog5 0
 zd2 0
+T1 0
+T2 0
