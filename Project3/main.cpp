@@ -56,7 +56,7 @@ int main(int argc, char** argv)//takes in the filename as a string and sends to 
       }
       parser.startParser(testInput);
       checker.check(parser.getRoot());
-      
+      checker.displaySymbolTable();
       
     }
   }

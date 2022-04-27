@@ -3,7 +3,6 @@
 #include <list>
 #include <string>
 #include <algorithm>
-#include <ctype.h>
 #include "SemanticChecker.h"
 
 using namespace std;
@@ -16,16 +15,12 @@ bool SemanticChecker::verify(string id)
   {
     if(element == id)
     {
-      found = true;
-      
+      found = true; 
     }
-  
   }
-  
- return found;
-
-  
+  return found;
 }
+
 
 void SemanticChecker::check(Node *nodePtr)
 {
@@ -44,11 +39,14 @@ void SemanticChecker::check(Node *nodePtr)
         break;
       }
       
-      if(verify(nodePtr->token4) == false)//uses id
+      if(verify(nodePtr->token4) == false)//declare id
       {
-        cout << "Error: Identifier: " << nodePtr->token4 << " has not been declared" << endl;
+        insert(nodePtr->token4);
+      }
+      else
+      {
+        cout << "Error: Identifier: " << nodePtr->token4 << " has already been declared" << endl;
         break;
-      
       }
       check(nodePtr->leftChild);
       check(nodePtr->rightChild);
@@ -61,9 +59,9 @@ void SemanticChecker::check(Node *nodePtr)
       if(verify(nodePtr->token2) == false)//uses id
       {
         cout << "Error: Identifier: " << nodePtr->token2 << " has not been declared" << endl;
-      
+        break;
       }
-      displaySymbolTable();
+      
       break;
     case 'A':
       if(verify(nodePtr->token2) == false)//declare id
@@ -95,7 +93,8 @@ void SemanticChecker::check(Node *nodePtr)
       check(nodePtr->leftChild);
       break;
     case 'F':
-      if(verify(nodePtr->token3) == false)//uses id
+   
+      if(verify(nodePtr->token3) == false && nodePtr->token3 != "Again")//uses id
       {
         cout << "Error: Identifier: " << nodePtr->token3 << " has not been declared" << endl;
         break;
@@ -122,14 +121,21 @@ void SemanticChecker::check(Node *nodePtr)
       check(nodePtr->leftChild);
       break;
     case 'K':
-      if(isdigit(nodePtr->token2.at(0)) == false)
+      if(nodePtr->token1 == "Move")
       {
-        if(verify(nodePtr->token2) == false)//uses id
+        if(isdigit(nodePtr->token2.at(0)) == false)
         {
-          cout << "Error: Identifier: " << nodePtr->token2 << " has not been declared" << endl;
-          break;
+          if(verify(nodePtr->token2) == false)//uses id
+          {
+            cout << "Error: Identifier: " << nodePtr->token2 << " has not been declared" << endl;
+            break;
+          }
+          
         }
+      
       }
+      
+        
       break;
     case 'L':
       if(verify(nodePtr->token2) == false)//uses id
@@ -139,6 +145,10 @@ void SemanticChecker::check(Node *nodePtr)
       }
       break;
     case 'W':
+      if(nodePtr->leftChild != nullptr)
+      {
+        check(nodePtr->leftChild);
+      }
       break;
     case 'Z':
       if(isdigit(nodePtr->token1.at(0)) == false)
@@ -146,12 +156,15 @@ void SemanticChecker::check(Node *nodePtr)
         if(verify(nodePtr->token1) == false)//uses id
         {
           cout << "Error: Identifier: " << nodePtr->token1 << " has not been declared" << endl;
+
           break;
         }
       }
       break;
   }
 }
+
+
 
 void SemanticChecker::displaySymbolTable()
 {
